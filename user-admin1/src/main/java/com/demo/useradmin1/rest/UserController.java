@@ -72,6 +72,7 @@ public class UserController {
         .getAddresses();
   }
 
+  @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("/users/{userId}/addresses")
   public void addAddressToUser(@PathVariable Long userId, @RequestBody @Valid Address address) {
     User user =

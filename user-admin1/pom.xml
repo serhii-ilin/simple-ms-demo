@@ -17,6 +17,7 @@
         <java.version>11</java.version>
         <mvn.checkstyle.file>checkstyle.xml</mvn.checkstyle.file>
         <mvn.checkstyle.version>3.1.2</mvn.checkstyle.version>
+        <avro.version>1.11.0</avro.version>
     </properties>
     <dependencies>
         <dependency>
@@ -72,29 +73,6 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Avro Stuff -->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.camel.springboot</groupId>-->
-<!--            <artifactId>camel-spring-boot-starter</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.camel.springboot</groupId>-->
-<!--            <artifactId>camel-avro-rpc-starter</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.apache.camel</groupId>-->
-<!--            <artifactId>camel-grpc</artifactId>-->
-<!--&lt;!&ndash;            <version>x.x.x</version>&ndash;&gt;-->
-<!--            &lt;!&ndash; use the same version as your Camel core version &ndash;&gt;-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.camel</groupId>-->
-<!--            <artifactId>camel-avro-rpc</artifactId>-->
-<!--&lt;!&ndash;            <version>x.x.x</version>&ndash;&gt;-->
-<!--            &lt;!&ndash; use the same version as your Camel core version &ndash;&gt;-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -105,22 +83,43 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
+        <!-- AVRO  -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>${avro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro-ipc-netty</artifactId>
+            <version>${avro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro-grpc</artifactId>
+            <version>${avro.version}</version>
+        </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-<!--            <dependency>-->
-<!--                <groupId>org.apache.camel.springboot</groupId>-->
-<!--                <artifactId>camel-spring-boot-bom</artifactId>-->
-<!--                <version>3.12.0</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
-        </dependencies>
-    </dependencyManagement>
-
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <version>${avro.version}</version>
+                <executions>
+                    <execution>
+                        <id>schemas</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>schema</goal>
+                            <goal>protocol</goal>
+                            <goal>idl-protocol</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
