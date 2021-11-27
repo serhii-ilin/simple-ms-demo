@@ -1,0 +1,37 @@
+@namespace("com.demo.useradmin1.grpc")
+protocol UserAdminService {
+
+  error UserAdminServiceError {
+    string errorMessage;
+  }
+
+   record User {
+      union { null, long } id = null;
+      string firstName;
+      string lastName;
+      string email;
+      union { null, string } password = null;
+   }
+
+   record AddUserRequest {
+      User user;
+   }
+
+  record AddUserResponse {
+     User user;
+  }
+
+   AddUserResponse addUser(AddUserRequest addUserRequest) throws UserAdminServiceError;
+
+   record ListUsersRequest {
+      union { null, string } country = null;
+   }
+
+   array<User> listUsers(ListUsersRequest listUsersRequest) throws UserAdminServiceError;
+
+   record DeleteUserRequest {
+      long userId;
+   }
+
+   void deleteUser(DeleteUserRequest deleteUserRequest) throws UserAdminServiceError;
+}

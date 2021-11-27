@@ -35,9 +35,6 @@ public class UserController {
 
   @GetMapping("/users")
   public List<User> listAllUsers(@RequestParam(required = false) Optional<String> country) {
-    // FIXME: handle parameters, like address??
-    // FIXME: add unit tests
-    // FIXME HETEAOS
     return country.isPresent()
         ? userRepo.findByAddressesCountry(country.get())
         : userRepo.findAll();

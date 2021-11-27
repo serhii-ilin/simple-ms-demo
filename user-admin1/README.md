@@ -29,11 +29,14 @@ GRPC Research
 * GRPC = Java / Basic tutorial : https://grpc.io/docs/languages/java/basics/
 * GRCP = Java / Examples https://github.com/grpc/grpc-java/tree/master/examples
 * GRPC = Swapping Serialization Example - https://github.com/grpc/grpc-java/blob/master/examples/src/main/java/io/grpc/examples/advanced/HelloJsonServer.java
-* GRPC / Spring Boot / https://yidongnan.github.io/grpc-spring-boot-starter/
-  * GRPC / Spring Boot / Documentation https://yidongnan.github.io/grpc-spring-boot-starter/en/
+* GRPC / Spring Boot integration
+  * gRPC-Spring-Boot-Starter
+    * Github https://yidongnan.github.io/grpc-spring-boot-starter/
+    * Documentation https://yidongnan.github.io/grpc-spring-boot-starter/en/
+    * Works with services of Bindable interface generated out of Protobuf protocol
+  * LogNet grpc-spring-boot-starter
+    * https://github.com/LogNet/grpc-spring-boot-starter
 * AVRO / Documentation - https://avro.apache.org/docs/1.11.0/
 * AVRO = Java / Getting started https://avro.apache.org/docs/1.11.0/gettingstartedjava.html
-
-???
-AVRO RPC
-* https://github.com/phunt/avro-rpc-quickstart
+* AVRO / GRPC package API https://avro.apache.org/docs/1.11.0/api/java/org/apache/avro/grpc/package-summary.html
+* AVRO RPC https://github.com/phunt/avro-rpc-quickstart
